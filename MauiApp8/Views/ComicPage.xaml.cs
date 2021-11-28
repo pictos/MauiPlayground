@@ -28,6 +28,12 @@ public partial class ComicPage : ContentPage
 				return;
 			button.BackgroundColor = Colors.Red;
 		});
+		Button.ControlsViewMapper.AppendToMapping(nameof(IButton.Released), (h, v) =>
+		{
+			if (v is not Button button)
+				return;
+			button.BackgroundColor = Colors.Blue;
+		});
 	}
 
 	protected override void OnAppearing()
