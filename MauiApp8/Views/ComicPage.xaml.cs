@@ -1,13 +1,7 @@
 ﻿using MauiApp8.ViewModel;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Xaml;
 using Microsoft.Maui.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiApp8.Views;
 public partial class ComicPage : ContentPage
@@ -15,9 +9,12 @@ public partial class ComicPage : ContentPage
 	public ComicPage()
 	{
 		InitializeComponent();
-		img ??= new Image();
-		btn ??= new Button();
+		img ??= new();
+		btn ??= new();
+		indicator ??= new();
 		CustomizeButton();
+
+		btn.Layout(new Rectangle());
 	}
 
 	void CustomizeButton()
@@ -28,7 +25,8 @@ public partial class ComicPage : ContentPage
 				return;
 			button.BackgroundColor = Colors.Red;
 		});
-		Button.ControlsViewMapper.AppendToMapping(nameof(IButton.Released), (h, v) =>
+		Button.ControlsViewMapper
+			.AppendToMapping(nameof(IButton.Released), (h, v) =>
 		{
 			if (v is not Button button)
 				return;
@@ -44,9 +42,10 @@ public partial class ComicPage : ContentPage
 			{
 				if (e.PropertyName == nameof(ComicsViewModel.ComicUrl))
 					Device.BeginInvokeOnMainThread(() => img.Source = vm.ComicUrl);
+				else if (e.PropertyName == nameof(BaseViewModel.IsBusy))
+					Device.BeginInvokeOnMainThread(() =>
+						indicator.IsVisible = indicator.IsRunning = vm.IsBusy);
 			};
 		}
-
-
 	}
 }

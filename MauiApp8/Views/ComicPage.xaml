@@ -25,9 +25,8 @@
                 Command="{Binding ComicCommand}"/>
 
         <ActivityIndicator GridLayout.RowSpan="2"
+                           x:Name="indicator"
                            VerticalOptions="Center"
-                           HorizontalOptions="Center"
-                           IsVisible="{Binding IsBusy}"
-                           IsRunning="{Binding IsBusy}"/>
+                           HorizontalOptions="Center"/>
     </GridLayout>
 </ContentPage>
