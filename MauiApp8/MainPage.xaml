@@ -1,6 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp8.MainPage"
+             xmlns:b="clr-namespace:MauiApp8.Behaviors"
              BackgroundColor="{DynamicResource SecondaryColor}">
 
     <ScrollView>
@@ -14,13 +15,17 @@
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Label 
+            <Entry 
                 Text="Welcome to .NET Multi-platform App UI"
                 Grid.Row="1"
                 SemanticProperties.HeadingLevel="Level1"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" >
+                <Entry.Behaviors>
+                    <b:RemoveBorder/>
+                </Entry.Behaviors>
+            </Entry>
 
             <Label 
                 Text="Current count: 0"
